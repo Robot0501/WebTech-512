@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <style>
+            
+            body{
+                background-color: antiquewhite;
+            }
+        </style>
+
+    </head>
+
+    <body id="body">
+
+        <p>Hello thereeeeeee</p>
+
+        <h1> Hellllllllloooooooooooo</h1>
+
+        <select id="bgColour">
+
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Red">Red</option>
+            <option value="Yellow">Yellow</option>
+        
+        </select>
+
+        <button id="changeColour" onclick="changeColour()">Change Bg Colour</button> <br><br>
+
+        <select id="fontFamily">
+
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Helvetica">Helvetica</option>
+            <option value="Courier New">Courier New</option>
+            <option value="monospace">monospace</option>
+        
+        </select>
+
+        <button onclick="changeFont()">Change Font Family</button> <br><br>
+
+        <br>
+        <button onclick="display()">Current Options</button>
+
+        <ul id="currentOptions"></ul>
+
+        <br><br>
+
+        <table id="history"> <tr> <th>Colour</th> <th>Font</th> </tr></table>
+
+        <script>
+
+            function changeColour()
+            {
+                const bgColour = document.getElementById("bgColour");
+                const colour = bgColour.value;
+                
+                document.getElementById("body").style.backgroundColor = colour;
+            }
+
+            function changeFont()
+            {
+                const fontSelector = document.getElementById("fontFamily");
+                const font = fontSelector.value;
+
+                document.getElementById("body").style.fontFamily = font;
+            }
+
+            function display()
+            {
+                const bgColour = document.getElementById("bgColour");
+                const colour = bgColour.value;
+
+                const fontSelector = document.getElementById("fontFamily");
+                const font = fontSelector.value;
+
+                const currentOptions = document.getElementById("currentOptions");
+                currentOptions.innerHTML = "";
+
+                const listItem1 = document.createElement("li");
+                const listItem2 = document.createElement("li");
+
+                const currentColour = document.createTextNode("Colour: " + colour);
+                const currentFont = document.createTextNode("Font: " + font);
+
+                listItem1.appendChild(currentColour);
+                listItem2.appendChild(currentFont);
+
+                currentOptions.appendChild(listItem1);
+                currentOptions.appendChild(listItem2);
+
+                updateTable(colour, font);
+            }
+
+            function updateTable(colour, font)
+            {
+                const table = document.getElementById("history");
+
+                const tr = document.createElement("tr");
+
+                const td1 = document.createElement("td");
+                const currentColour = document.createTextNode(colour);
+                td1.appendChild(currentColour);
+
+                const td2 = document.createElement("td");
+                const currentFont = document.createTextNode(font);
+                td2.appendChild(currentFont);
+
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+
+                table.appendChild(tr);
+
+            }
+
+        </script>
+
+    </body>
+
+</html>
