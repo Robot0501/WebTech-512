@@ -8,6 +8,13 @@
             body{
                 background-color: antiquewhite;
             }
+
+            th, table, button{
+                border: 1px solid black;
+            }
+            
+            th{ font-size: large;}
+
         </style>
 
     </head>
@@ -47,9 +54,11 @@
 
         <br><br>
 
-        <table id="history"> <tr> <th>Colour</th> <th>Font</th> </tr></table>
+        <table id="history"> <tr> <th>Colour</th> <th>Font</th> <th>Delete</th> </tr></table>
 
         <script>
+
+            var i = 0;
 
             function changeColour()
             {
@@ -95,6 +104,8 @@
 
             function updateTable(colour, font)
             {
+                i ++;
+
                 const table = document.getElementById("history");
 
                 const tr = document.createElement("tr");
@@ -107,8 +118,15 @@
                 const currentFont = document.createTextNode(font);
                 td2.appendChild(currentFont);
 
+                const td3 = document.createElement("button");
+                td3.innerHTML = "Delete";
+                td3.onclick = function () { table.removeChild(tr); };
+
                 tr.appendChild(td1);
                 tr.appendChild(td2);
+                tr.appendChild(td3);
+
+                tr.id = String(i);
 
                 table.appendChild(tr);
 
